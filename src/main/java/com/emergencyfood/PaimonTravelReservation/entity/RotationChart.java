@@ -1,11 +1,13 @@
 package com.emergencyfood.PaimonTravelReservation.entity;
 
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-import javax.persistence.Entity;
+
 
 @Data
+@ApiModel(value="轮播图对象",description="轮播图对象")
 public class RotationChart {
 
     private Integer goodsId;
@@ -15,6 +17,8 @@ public class RotationChart {
     private String openType;
 
     private String navigatorUrl;
+
+
 
 
 }

@@ -2,14 +2,14 @@ package com.emergencyfood.PaimonTravelReservation.service.impl;
 
 import com.emergencyfood.PaimonTravelReservation.entity.RotationChart;
 import com.emergencyfood.PaimonTravelReservation.mapper.rotationMapper;
-import com.emergencyfood.PaimonTravelReservation.service.rotationChart;
+import com.emergencyfood.PaimonTravelReservation.service.rotationChartServices;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 
 @Service
-public class rotationChartImpl implements rotationChart {
+public class rotationChartServicesImpl implements rotationChartServices {
 
     @Resource
     rotationMapper rCMapper;

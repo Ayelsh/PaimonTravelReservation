@@ -1,5 +1,6 @@
 package com.emergencyfood.PaimonTravelReservation.config;
 
+import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -13,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration // 标明是配置类
 @EnableSwagger2 //开启swagger功能
+@EnableSwaggerBootstrapUI
 public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
