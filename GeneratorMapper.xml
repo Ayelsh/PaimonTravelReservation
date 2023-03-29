@@ -17,34 +17,29 @@
                         password="ykjykj">
         </jdbcConnection>
         <!--        自动根据数据库表生成pojo实体类-->
-        <javaModelGenerator targetPackage="com.emergencyfood.PaimonTravelReservation.entity2"
+        <javaModelGenerator targetPackage="com.emergencyfood.PaimonTravelReservation.entity"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="false" />
         </javaModelGenerator>
-<!--                自动生成mybatis的mapper.xml文件-->
-        <sqlMapGenerator targetPackage="com.emergencyfood.PaimonTravelReservation.mapper2"
-                         targetProject="src/main/java">
-            <property name="enableSubPackages" value="false" />
-        </sqlMapGenerator>
-        <!--        生成mybatis的mapper接口类文件-->
-        <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.emergencyfood.PaimonTravelReservation.mapper2" targetProject="src/main/java">
-            <property name="enableSubPackages" value="false" />
-        </javaClientGenerator>
+<!--&lt;!&ndash;                自动生成mybatis的mapper.xml文件&ndash;&gt;-->
+<!--        <sqlMapGenerator targetPackage="com.emergencyfood.PaimonTravelReservation.mapper2"-->
+<!--                         targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="false" />-->
+<!--        </sqlMapGenerator>-->
+<!--        &lt;!&ndash;        生成mybatis的mapper接口类文件&ndash;&gt;-->
+<!--        <javaClientGenerator type="XMLMAPPER"-->
+<!--                             targetPackage="com.emergencyfood.PaimonTravelReservation.mapper2" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="false" />-->
+<!--        </javaClientGenerator>-->
         <!--数据库中有多少张表就需要指定多少个table的信息-->
         <!--        tableName>表名对应domainObjectName对应的实体类的名字-->
-        <table tableName="city_data" domainObjectName="City"
+        <table tableName="Fligts" domainObjectName="Fligts"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false"/>
-        <table tableName="rotation_chart" domainObjectName="RotationChart"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"/>
+
     </context>
 </generatorConfiguration>

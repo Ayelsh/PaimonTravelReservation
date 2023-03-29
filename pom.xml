@@ -93,9 +93,16 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+		<!--解决时间数据的传递-->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.3.7</version>
+		</dependency>
 
 
-    </dependencies>
+
+	</dependencies>
 
 	<build>
 		<plugins>

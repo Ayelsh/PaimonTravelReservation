@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface cityDataMapper {
 
     @Select("select * from city_data")
-    @ResultType(RotationChart.class)
+    @ResultType(City.class)
     @Results(value={
             @Result(property="name", column="name"),
             @Result(property="imageSrc", column="image_src"),
