@@ -99,6 +99,13 @@
 			<artifactId>hutool-all</artifactId>
 			<version>5.3.7</version>
 		</dependency>
+		<!-- springboot 邮件mail -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
 
 
 

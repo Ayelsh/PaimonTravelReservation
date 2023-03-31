@@ -28,7 +28,7 @@ public interface fligtsDataMapper {
     @Results(value={
             @Result(property="fromCity", column="From_city"),
             @Result(property="toCity", column="To_city"),
-            @Result(property="depart", column="Depart"),
+            @Result(property="depart", column="DepartTime"),
             @Result(property="Return", column="ReturnTime"),
             @Result(property="classType", column="Class_type"),
             @Result(property="remainingSeats", column="Remaining_seats"),

@@ -4,24 +4,28 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.emergencyfood.PaimonTravelReservation.commons.JudgeObjIsNullUtil;
 import com.emergencyfood.PaimonTravelReservation.commons.ReturnObjects;
+import com.emergencyfood.PaimonTravelReservation.commons.SendEmailUtil;
 import com.emergencyfood.PaimonTravelReservation.entity.Fligts;
 import com.emergencyfood.PaimonTravelReservation.service.impl.cityDataServicesImpl;
 import com.emergencyfood.PaimonTravelReservation.service.impl.fligtsServicesImpl;
 import com.emergencyfood.PaimonTravelReservation.service.impl.rotationChartServicesImpl;
+import com.mysql.cj.AbstractQuery;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.MDC;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Api(tags = "主页")
 @RestController
 public class HomeController {
@@ -35,12 +39,20 @@ public class HomeController {
     @Resource
     fligtsServicesImpl fligtsData;
 
+    @Resource
+    private SendEmailUtil emailUtil;
+
 
 
     @ApiOperation(value = "轮播图数据接口",notes = "用于获取轮播图数据")
     @GetMapping(value = "/rotationChartShow.do")
     public @ResponseBody
-    Object rotationChartShow(){
+    Object rotationChartShow(HttpServletRequest request){
+
+
+        MDC.put("reqId", request.getSession().getId());
+        log.info("用户访问了一次轮播数据接口");
+
 
         ReturnObjects returnObjects = new ReturnObjects();
 
@@ -120,6 +132,18 @@ public class HomeController {
         return returnObjects;
 
     }
+
+    @ApiOperation(value = "邮箱接口",notes = "邮箱接口")
+    @PostMapping(value = "/mail.do")
+    public void mailSend(@RequestParam String userMail){
+
+        String title = "欢迎注册PaimonTravelReservationSystem!";
+        String content = "文本邮件发送测试";
+        emailUtil.sendMessage(userMail, title, content);
+
+    }
+
+
 
 
 
