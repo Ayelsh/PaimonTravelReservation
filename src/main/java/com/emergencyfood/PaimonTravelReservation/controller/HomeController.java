@@ -23,7 +23,8 @@ import java.util.List;
 @Slf4j
 @RestWrapper
 @Api(tags = "主页")
-@RestController(value = "/PaimonTravelReservation")
+@RestController()
+@RequestMapping(value = "/PaimonTravelReservation")
 public class HomeController {
 
     @Resource
