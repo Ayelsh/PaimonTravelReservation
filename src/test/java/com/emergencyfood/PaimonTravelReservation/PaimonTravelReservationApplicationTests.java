@@ -1,9 +1,8 @@
 package com.emergencyfood.PaimonTravelReservation;
 
-import com.emergencyfood.PaimonTravelReservation.commons.JudgeObjIsNullUtil;
+
 import com.emergencyfood.PaimonTravelReservation.entity.City;
 import com.emergencyfood.PaimonTravelReservation.service.impl.cityDataServicesImpl;
-import com.emergencyfood.PaimonTravelReservation.service.impl.rotationChartServicesImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
