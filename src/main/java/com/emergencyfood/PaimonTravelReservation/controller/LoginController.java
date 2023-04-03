@@ -5,6 +5,9 @@ import com.emergencyfood.PaimonTravelReservation.commons.RestResult;
 import com.emergencyfood.PaimonTravelReservation.commons.RestWrapper;
 import com.emergencyfood.PaimonTravelReservation.entity.User;
 import com.emergencyfood.PaimonTravelReservation.service.UserService;
+import com.emergencyfood.PaimonTravelReservation.service.impl.UserServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Result;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,24 +18,17 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@Api(tags = "登录")
 @RestController
-@RestWrapper
 public class LoginController {
 
     @Resource
-    UserService userService;
+    UserServiceImpl userService;
 
+    @ApiOperation(value = "登录接口",notes = "登录接口")
     @PostMapping(value = "/login")
-    public RestResult login(@RequestBody User userDTO) {
-        User user = userService.login(userDTO);
-        if (user != null) {
+    public RestResult login(@RequestBody User user) {
 
-            Map<String, Object> data = new HashMap<>();
-            data.put("user", user);
-            data.put("token", JWTUtil.jwtCreate(user.getUsername()));
-            return RestResult.success(data);
-        }
-        return RestResult.fail(400, "fail");
+        return userService.login(user);
     }
 }

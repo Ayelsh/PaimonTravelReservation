@@ -1,10 +1,10 @@
 package com.emergencyfood.PaimonTravelReservation.controller;
 
+
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.emergencyfood.PaimonTravelReservation.commons.RestResult;
 import com.emergencyfood.PaimonTravelReservation.commons.RestWrapper;
-import com.emergencyfood.PaimonTravelReservation.commons.ReturnObjects;
 import com.emergencyfood.PaimonTravelReservation.commons.SendEmailUtil;
 import com.emergencyfood.PaimonTravelReservation.entity.Fligts;
 import com.emergencyfood.PaimonTravelReservation.service.impl.cityDataServicesImpl;
@@ -50,8 +50,6 @@ public class HomeController {
         log.info("用户访问了一次轮播数据接口");
 
 
-        ReturnObjects returnObjects = new ReturnObjects();
-
         if (roationChart.getCharts().toString().equals("[]")){
             return RestResult.fail(404,"查找的数据为空");
         }
@@ -66,8 +64,10 @@ public class HomeController {
 
     @ApiOperation(value = "城市数据展示接口",notes = "用于获取城市数据")
     @GetMapping(value = "/cityDataShow.do")
-    public Object cityDataShow(){
+    public Object cityDataShow(HttpServletRequest request){
 
+        MDC.put("reqId", request.getSession().getId());
+        log.info("用户访问了一次轮播数据接口");
 
 
         if (cityData.getCity().toString().equals("[]") ? true : false){
@@ -86,11 +86,12 @@ public class HomeController {
 
     @ApiOperation(value = "可选航班数据展示接口",notes = "用于获取可选航班数据")
     @GetMapping(value = "/fligtsShow.do/{FromCity}/{ToCity}/{DepartTime}/{ReturnTime}/{PassengerNum}/{ClassType}")
-    public Object fligtsShow(@PathVariable("FromCity") String FromCity , @PathVariable("ToCity")String ToCity ,
+    public Object fligtsShow(HttpServletRequest request,@PathVariable("FromCity") String FromCity , @PathVariable("ToCity")String ToCity ,
                       @PathVariable("DepartTime") String DepartTime , @PathVariable("ReturnTime") String ReturnTime ,
                       @PathVariable("PassengerNum")int PassengerNum, @PathVariable("ClassType")String ClassType){
 
-
+        MDC.put("reqId", request.getSession().getId());
+        log.info("用户访问了一次轮播数据接口");
 
 
         DateTime departTime = DateUtil.parse(DepartTime);
@@ -117,7 +118,11 @@ public class HomeController {
 
     @ApiOperation(value = "邮箱接口",notes = "邮箱接口")
     @PostMapping(value = "/mail.do")
-    public void mailSend(@RequestParam String userMail){
+    public void mailSend(HttpServletRequest request,
+                         @RequestParam String userMail){
+
+        MDC.put("reqId", request.getSession().getId());
+        log.info("用户访问了一次轮播数据接口");
 
         String title = "欢迎注册PaimonTravelReservationSystem!";
         String content = "文本邮件发送测试";

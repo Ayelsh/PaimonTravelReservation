@@ -25,13 +25,6 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
 
-        ParameterBuilder tokenPar = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<>();
-        tokenPar.name("Authorization")
-                .description("令牌")
-                .modelRef(new ModelRef("string"))
-                .parameterType("header")
-                .required(false).build();
 
         return new Docket(DocumentationType.SWAGGER_2)  // DocumentationType.SWAGGER_2 固定的，代表swagger2
 //                .groupName("分布式任务系统") // 如果配置多个文档的时候，那么需要配置groupName来分组标识
@@ -39,8 +32,7 @@ public class SwaggerConfig {
                 .select() // select()函数返回一个ApiSelectorBuilder实例,用来控制接口被swagger做成文档
                 .apis(RequestHandlerSelectors.basePackage("com.emergencyfood.PaimonTravelReservation.controller")) // 用于指定扫描哪个包下的接口
                 .paths(PathSelectors.any())// 选择所有的API,如果你想只为部分API生成文档，可以配置这里
-                .build()
-                .globalOperationParameters(pars);//重点看：这里;
+                .build();
     }
 
 
