@@ -31,13 +31,15 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)     // 指定session的创建策略，不使用session
                 .and()                                                                          // 再次获取到HttpSecurity对象
                 .authorizeRequests()                                                            // 进行认证请求的配置
-                .antMatchers("/login").anonymous()                                         // 对于登录接口，允许匿名访问
+                .antMatchers("/PaimonTravelReservation/login").anonymous()                                         // 对于登录接口，允许匿名访问
                 .antMatchers("/doc.html").anonymous()
                 .antMatchers("/swagger-resources/**").anonymous()
                 .antMatchers("/webjars/**").anonymous()
                 .antMatchers("/v2/**").anonymous()
                 .antMatchers("/favicon.ico").anonymous()
                 .antMatchers("/swagger-ui.html/**").anonymous()
+                .antMatchers("/PaimonTravelReservation/identifycode").anonymous()
+                .antMatchers("/PaimonTravelReservation/identifycodeSign").anonymous()
                 .anyRequest().authenticated();                                                  // 除了上面的请求以外所有的请求全部需要认证
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }

@@ -20,6 +20,7 @@ import java.util.Map;
 
 @Api(tags = "登录")
 @RestController
+@RequestMapping(value = "/PaimonTravelReservation")
 public class LoginController {
 
     @Resource
@@ -29,6 +30,7 @@ public class LoginController {
     @PostMapping(value = "/login")
     public RestResult login(@RequestBody User user) {
 
+        System.out.println("访问了一次登录接口");
         return userService.login(user);
     }
 }

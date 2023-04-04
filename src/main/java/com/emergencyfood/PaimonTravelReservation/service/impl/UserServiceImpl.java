@@ -5,6 +5,7 @@ import com.emergencyfood.PaimonTravelReservation.commons.JWTUtil;
 import com.emergencyfood.PaimonTravelReservation.commons.RestResult;
 import com.emergencyfood.PaimonTravelReservation.entity.LoginUser;
 import com.emergencyfood.PaimonTravelReservation.entity.User;
+import com.emergencyfood.PaimonTravelReservation.mapper.UserMapper;
 import com.emergencyfood.PaimonTravelReservation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private RedisTemplate<String , String> redisTemplate ;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public RestResult login(User user) {
@@ -81,5 +86,17 @@ public class UserServiceImpl implements UserService {
         // 返回
         return RestResult.success(null);
 
+    }
+
+    @Override
+    public RestResult signup(User user) {
+
+        String password = user.getPassword();
+        password = new BCryptPasswordEncoder().encode(password);
+        user.setPassword(password);
+        Integer result = userMapper.insert(user);
+        if (result == 1){
+            return RestResult.success("Sign_SUCCESS");
+        }else return RestResult.fail(403,"数据库插入失败");
     }
 }

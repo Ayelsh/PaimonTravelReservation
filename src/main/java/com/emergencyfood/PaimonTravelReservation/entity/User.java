@@ -29,4 +29,8 @@ public class User {
     private Date updateTime ;                // 更新时间
     private Integer delFlag ;                // 是否删除  （0代表未删除，1代表已删除）
 
+    public User(String username,String password){
+        this.userName=username;
+        this.password=password;
+    }
 }

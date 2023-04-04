@@ -8,4 +8,6 @@ public interface UserService {
     RestResult login(User user);
 
     RestResult logout();
+
+    RestResult signup(User user);
 }

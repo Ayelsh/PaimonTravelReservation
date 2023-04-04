@@ -16,13 +16,17 @@ public class WebConfig implements WebMvcConfigurer {
 
                 .addPathPatterns("/**")
                 //不需要的拦截请求
-                .excludePathPatterns("/login")
+                .excludePathPatterns("/PaimonTravelReservation/login")
                 .excludePathPatterns("/doc.html") //不需要拦截的地
                 .excludePathPatterns("/swagger-resources/**")
                 .excludePathPatterns("/webjars/**")
                 .excludePathPatterns("/v2/**")
                 .excludePathPatterns("/favicon.ico")
-                .excludePathPatterns("/swagger-ui.html/**");
+                .excludePathPatterns("/swagger-ui.html/**")
+                .excludePathPatterns("/PaimonTravelReservation/identifycode")
+                .excludePathPatterns("/PaimonTravelReservation/identifycodeSign")
+
+        ;
     }
 
 
